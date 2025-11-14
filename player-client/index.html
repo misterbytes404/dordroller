@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dord Roller - Player Client</title>
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🎲 Dord Roller - Player</h1>
+      <div id="connection-status">Disconnected</div>
+    </header>
+
+    <main>
+      <section id="join-section">
+        <h2>Join Game Session</h2>
+        <input type="text" id="room-code" placeholder="Enter Room Code">
+        <input type="text" id="player-name" placeholder="Your Name">
+        <button id="join-btn">Join</button>
+      </section>
+
+      <section id="roll-section" style="display: none;">
+        <h2>Roll Request</h2>
+        <div id="roll-request-info">
+          <p id="request-text">Waiting for roll request...</p>
+        </div>
+        <button id="execute-roll-btn" style="display: none;">Roll!</button>
+        <div id="result-display"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
