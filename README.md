@@ -24,3 +24,15 @@ DordRoller/
 1. **MVP 1**: GM-to-OBS Dice Roller
 2. **MVP 2**: GM Stat Tracker
 3. **MVP 3**: Player Client Integration
+
+## Contributors
+
+<!--
+Source - https://stackoverflow.com/a
+Posted by Bertrand Martel
+Retrieved 2025-11-15, License - CC BY-SA 4.0
+-->
+
+<a href="https://github.com/misterbytes404/dordroller/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=misterbytes404/dordroller" />
+</a>
