@@ -36,7 +36,7 @@ function displayRoll(rollData) {
 
   // Populate data
   label.textContent = rollData.label;
-  result.textContent = rollData.result;
+  result.textContent = `${rollData.rawResult} + ${rollData.modifier} = ${rollData.result}`;
   diceType.textContent = rollData.diceType;
 
   // Show with animation

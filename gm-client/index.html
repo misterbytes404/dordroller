@@ -21,17 +21,30 @@
       </section>
 
       <section id="dice-roller">
-        <h2>Quick Dice Roll (MVP 1)</h2>
-        <select id="dice-type">
-          <option value="d20">d20</option>
-          <option value="d12">d12</option>
-          <option value="d10">d10</option>
-          <option value="d8">d8</option>
-          <option value="d6">d6</option>
-          <option value="d4">d4</option>
-        </select>
-        <input type="text" id="roll-label" placeholder="Roll description">
+        <h2>Dice Roller</h2>
+        <div class="dice-fields">
+          <div class="field-group">
+            <label for="dice-type">Die:</label><br>
+            <select id="dice-type">
+              <option value="d20">d20</option>
+              <option value="d12">d12</option>
+              <option value="d10">d10</option>
+              <option value="d8">d8</option>
+              <option value="d6">d6</option>
+              <option value="d4">d4</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="roll-label">Action:</label><br>
+            <input type="text" id="roll-label" placeholder="Roll label (e.g., Attack)">
+          </div>
+          <div class="field-group">
+            <label for="roll-modifier">Modifier:</label><br>
+            <input type="text" id="roll-modifier" placeholder="Modifier (e.g., +5 or -2)">
+          </div>
+        </div>
         <button id="roll-btn">Roll!</button>
+        <div id="feedback"></div>
       </section>
 
       <section id="monster-tracker">

@@ -81,3 +81,33 @@ button:hover {
   gap: 15px;
   margin-bottom: 15px;
 }
+
+/* Updated for horizontal layout with labels above */
+#dice-roller .dice-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+#dice-roller .field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  flex: 1;
+  min-width: 150px;
+}
+
+#dice-roller .field-group label {
+  margin-bottom: 5px;
+}
+
+#dice-roller button {
+  margin-top: 10px;
+}
+
+#feedback {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #ff6b6b;
+}

@@ -16,20 +16,23 @@ export class DiceRoller {
     const diceType = document.getElementById('dice-type').value;
     const label = document.getElementById('roll-label').value || 'GM Roll';
     const roomCode = this.getRoomCode();
+    const modifier = Number(document.getElementById('roll-modifier').value) || 0;
+    const rawResult = this.rollDice(diceType);
+    const finalResult = rawResult + modifier;
 
     if (!roomCode) {
       alert('Please join a room first!');
       return;
     }
 
-    const result = this.rollDice(diceType);
-
     const rollData = {
       roomCode,
       roller: 'GM',
       diceType,
-      result,
+      result: finalResult,
       label,
+      modifier,
+      rawResult,
       timestamp: Date.now()
     };
 
@@ -38,7 +41,7 @@ export class DiceRoller {
 
     // Added: UI feedback - assumes <div id="feedback"></div> in index.html
     const feedback = document.getElementById('feedback');
-    feedback.textContent = `Rolled ${diceType}: ${result} (${label})`;
+    feedback.textContent = `Rolled ${diceType}: ${rawResult} + ${modifier} = ${finalResult} (${label})`;
   }
 
   rollDice(diceType) {
