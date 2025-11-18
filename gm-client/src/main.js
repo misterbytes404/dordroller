@@ -6,6 +6,7 @@ import { PlayerTracker } from './modules/playerTracker.js';
 // Initialize socket connection
 const socket = io('http://localhost:3000');
 
+
 // State
 let currentRoom = null;
 
@@ -31,9 +32,13 @@ document.getElementById('join-room-btn').addEventListener('click', () => {
   }
 });
 
-socket.on('room_joined', (data) => {
+socket.on('joined_room', (data) => {
   console.log('Joined room:', data.roomCode);
   alert(`Joined room: ${data.roomCode}`);
+});
+
+socket.on('error', (data) => {
+  alert(`Error: ${data.message}`);
 });
 
 // Initialize modules

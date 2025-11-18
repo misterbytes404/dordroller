@@ -2,6 +2,7 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import path from'path';
 
 const app = express();
 const httpServer = createServer(app);
@@ -15,6 +16,7 @@ const io = new Server(httpServer, {
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/obs-client', express.static(path.join(process.cwd(), '../obs-client')))
 
 // Basic health check
 app.get('/health', (req, res) => {

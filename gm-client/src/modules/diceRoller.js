@@ -35,6 +35,10 @@ export class DiceRoller {
 
     this.socket.emit('gm_roll', rollData);
     console.log('Roll sent:', rollData);
+
+    // Added: UI feedback - assumes <div id="feedback"></div> in index.html
+    const feedback = document.getElementById('feedback');
+    feedback.textContent = `Rolled ${diceType}: ${result} (${label})`;
   }
 
   rollDice(diceType) {
