@@ -31,13 +31,26 @@ socket.on('broadcast_roll', (rollData) => {
 function displayRoll(rollData) {
   const display = document.getElementById('roll-display');
   const label = display.querySelector('.roll-label');
-  const result = display.querySelector('.roll-result');
-  const diceType = display.querySelector('.roll-dice-type');
+  const largeResult = document.getElementById('large-result');
+  const rollDetails = document.getElementById('roll-details');
 
   // Populate data
   label.textContent = rollData.label;
-  result.textContent = `${rollData.rawResult} + ${rollData.modifier} = ${rollData.result}`;
-  diceType.textContent = rollData.diceType;
+  largeResult.textContent = rollData.result; // Final Result displayed in large font
+  const rollsText = rollData.individualRolls.join(' + ');
+  const modifierText = rollData.modifier !== 0 ? ` + ${rollData.modifier}` : '';
+
+  // Debug logging
+  console.log('rollData.result:', rollData.result, typeof rollData.result);
+  console.log('rollsText:', rollsText);
+  console.log('modifier.Text:', modifierText);
+
+  rollDetails.textContent = `Rolled ${rollData.quantity}x ${rollData.diceType}: [${rollData.individualRolls.join(', ')}]${modifierText}`;
+
+  // Debug logging
+  console.log('largeResult.textContent set to:', largeResult ? largeResult.textContent : 'null');
+  console.log('rollDetails.textContent set to:', rollDetails ? rollDetails.textContent : 'null');
+
 
   // Show with animation
   display.classList.remove('hidden');

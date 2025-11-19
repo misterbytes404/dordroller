@@ -7,14 +7,15 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="roll-display" class="hidden">
-    <div class="roll-container">
-      <div class="roll-label"></div>
-      <div class="roll-result"></div>
-      <div class="roll-dice-type"></div>
+  <div id="roll-overlay">
+    <div id="roll-display" class="hidden">
+      <div class="roll-container">
+        <div class="roll-label"></div>
+        <div id="large-result"></div>
+        <div id="roll-details"></div>
+      </div>
     </div>
   </div>
-
   <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
   <script src="main.js"></script>
 </body>

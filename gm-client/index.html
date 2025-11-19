@@ -24,6 +24,31 @@
         <h2>Dice Roller</h2>
         <div class="dice-fields">
           <div class="field-group">
+            <label for="dice-quantity">Quantity:</label><br>
+            <select id="dice-quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+          <div class="field-group">
             <label for="dice-type">Die:</label><br>
             <select id="dice-type">
               <option value="d20">d20</option>
@@ -36,12 +61,29 @@
           </div>
           <div class="field-group">
             <label for="roll-label">Action:</label><br>
-            <input type="text" id="roll-label" placeholder="Roll label (e.g., Attack)">
+            <select id="roll-label">
+              <option value="">Select Action</option>
+              <option value="Attack Roll">Attack Roll</option>
+              <option value="Saving Throw">Saving Throw</option>
+              <option value="Skill Check">Skill Check</option>
+              <option value="Ability Check">Ability Check</option>
+              <option value="Damage Roll">Damage Roll</option>
+              <option value="Initiative">Initiative</option>
+              <option value="Spell Attack">Spell Attack</option>
+              <option value="Concentration Check">Concentration Check</option>
+              <option value="Death Saving Throw">Death Saving Throw</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div class="field-group">
             <label for="roll-modifier">Modifier:</label><br>
             <input type="text" id="roll-modifier" placeholder="Modifier (e.g., +5 or -2)">
           </div>
+        </div>
+        <div class="field-group">
+          <label>Roll Options:</label><br>
+          <label><input type="checkbox" id="advantage" name="roll-option"> Advantage</label>
+          <label><input type="checkbox" id="disadvantage" name="roll-option"> Disavantage</label>
         </div>
         <button id="roll-btn">Roll!</button>
         <div id="feedback"></div>
