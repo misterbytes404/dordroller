@@ -80,22 +80,31 @@
             <input type="text" id="roll-modifier" placeholder="Modifier (e.g., +5 or -2)">
           </div>
         </div>
-        <div class="field-group">
-          <label>Roll Options:</label><br>
-          <label><input type="checkbox" id="advantage" name="roll-option"> Advantage</label>
-          <label><input type="checkbox" id="disadvantage" name="roll-option"> Disavantage</label>
+        
+        <!-- New Button Group -->
+        <div class="button-group" style="margin-top: 15px; display: flex; gap: 10px;">
+          <button id="roll-btn">Roll Normal</button>
+          <button id="adv-btn" style="background-color: #4CAF50; color: white;">Roll Advantage (2d20)</button>
+          <button id="disadv-btn" style="background-color: #f44336; color: white;">Roll Disadvantage (2d20)</button>
         </div>
-        <button id="roll-btn">Roll!</button>
+        
         <div id="feedback"></div>
       </section>
 
       <section id="monster-tracker">
-        <h2>Monster Tracker (MVP 2)</h2>
-        <div id="monster-list">
-          <!-- Monster cards will be dynamically added here -->
-        </div>
-        <button id="add-monster-btn">+ Add Monster</button>
-      </section>
+      <h2>Monster Tracker</h2>
+      <div id="add-monster-form">
+        <input type="text" id="monster-name" placeholder="Monster Name" required>
+        <input type="number" id="monster-hp" placeholder="HP" required>
+        <input type="number" id="monster-ac" placeholder="AC" required>
+        <input type="number" id="monster-initiative" placeholder="Initiative" required>
+        <textarea id="monster-notes" placeholder="Notes"></textarea>
+        <button id="add-monster-btn">Add Monster</button>
+      </div>
+      <div id="monster-list">
+        <!-- Monster cards will be added here dynamically -->
+      </div>
+    </section>
 
       <section id="player-tracker">
         <h2>Player Tracker (MVP 2)</h2>

@@ -111,3 +111,43 @@ button:hover {
   font-weight: bold;
   color: #ff6b6b;
 }
+
+/* Monster Tracker Styles */
+.monster-card {
+  background: #333;
+  border: 1px solid #444;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.monster-card h3 {
+  color: #4ecdc4;
+  margin-bottom: 10px;
+}
+
+.monster-card p {
+  margin: 5px 0;
+}
+
+.monster-card button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+#add-monster-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#add-monster-form input, #add-monster-form textarea {
+  flex: 1;
+  min-width: 150px;
+}
+
+#add-monster-form textarea {
+  height: 60px;
+}
