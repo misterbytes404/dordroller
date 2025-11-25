@@ -31,7 +31,7 @@ This project incorporates parsing logic inspired by the 5etools project (https:/
 
 ## To Do
 
-1. **HP Bar* Make an HP bar at the top of the monster card that allows the GM to manipulate the value to show damage.Implament this for the player client as well.
+1. **HP Bar:** Make an HP bar at the top of the monster card that allows the GM to manipulate the value to show damage.Implament this for the player client as well.
 
 ## Known Bugs
 
@@ -48,3 +48,4 @@ Retrieved 2025-11-15, License - CC BY-SA 4.0
 <a href="https://github.com/misterbytes404/dordroller/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=misterbytes404/dordroller" />
 </a>
+
