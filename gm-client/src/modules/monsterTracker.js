@@ -25,7 +25,7 @@ export class MonsterTracker {
   }
 
   async loadBestiary() {
-    // List of bestiary files (hardcoded from directory listing; ~100 files)
+    // List of bestiary files (hardcoded from directory listing; ~100 files) from 5e.tools
     const files = [
       'bestiary-mm.json', 'bestiary-dmg.json', 'bestiary-vgm.json', 'bestiary-mtf.json',
       'bestiary-wdh.json', 'bestiary-cos.json', 'bestiary-pota.json', 'bestiary-skt.json',
