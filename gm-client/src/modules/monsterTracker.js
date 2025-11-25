@@ -107,7 +107,7 @@ export class MonsterTracker {
     matches.forEach(name => {
       const li = document.createElement('li');
       li.textContent = `${name} (${this.bestiary.get(name).source})`;
-      li.addEventListener('click', () => this.selectMonster(name));
+      li.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); document.getElementById('search-results').style.display = 'none'; this.selectMonster(name); });
       resultsList.appendChild(li);
     });
     resultsList.style.display = 'block';
@@ -141,6 +141,7 @@ export class MonsterTracker {
     // Hide search results
     document.getElementById('search-results').style.display = 'none';
     document.getElementById('monster-search').value = '';
+    this.searchMonsters('');
   }
 
   formatSpeed(speed) {
