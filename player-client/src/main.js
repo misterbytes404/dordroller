@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 // Initialize socket connection
-const socket = io('http://localhost:3000');
+const socket = io(window.location.origin);
 
 // State
 let playerName = '';
@@ -22,20 +22,33 @@ socket.on('disconnect', () => {
 });
 
 // Join room
-document.getElementById('join-btn').addEventListener('click', () => {
+document.getElementById('join-btn').addEventListener('click', async () => {
   const roomCode = document.getElementById('room-code').value.trim();
   const name = document.getElementById('player-name').value.trim();
 
   if (roomCode && name) {
-    playerName = name;
-    currentRoom = roomCode;
-    socket.emit('join_room', roomCode);
+    try {
+      const response = await fetch(`${window.location.origin}/join-room`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: roomCode })
+      });
+      if (response.ok) {
+        playerName = name;
+        currentRoom = roomCode;
+        socket.emit('join_room', roomCode);
+      } else {
+        alert('Invalid room code');
+      }
+    } catch (error) {
+      alert('Error joining room');
+    }
   } else {
     alert('Please enter both room code and your name!');
   }
 });
 
-socket.on('room_joined', (data) => {
+socket.on('joined_room', (data) => {
   console.log('Joined room:', data.roomCode);
   document.getElementById('join-section').style.display = 'none';
   document.getElementById('roll-section').style.display = 'block';

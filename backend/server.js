@@ -3,6 +3,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import path from'path';
+import crypto from 'crypto';
 
 const app = express();
 const httpServer = createServer(app);
@@ -17,6 +18,32 @@ const io = new Server(httpServer, {
 app.use(cors());
 app.use(express.json());
 app.use('/obs-client', express.static(path.join(process.cwd(), '../obs-client')))
+
+// Room storage
+const rooms = new Map(); // code -> { players: Set<socketId> }
+
+// Generate unique room code
+function generateRoomCode() {
+  return crypto.randomBytes(3).toString('hex').toUpperCase(); // 6 characters
+}
+
+// Routes
+app.post('/create-room', (req, res) => {
+  let code;
+  do {
+    code = generateRoomCode();
+  } while (rooms.has(code));
+  rooms.set(code, { players: new Set() });
+  res.json({ code });
+});
+
+app.post('/join-room', (req, res) => {
+  const { code } = req.body;
+  if (!rooms.has(code)) {
+    return res.status(404).json({ error: 'Room not found' });
+  }
+  res.json({ success: true });
+});
 
 // Basic health check
 app.get('/health', (req, res) => {
@@ -33,7 +60,12 @@ io.on('connection', (socket) => {
       socket.emit('error', { message: 'Invalid room code' });
       return;
     }
+    if (!rooms.has(roomCode)) {
+      socket.emit('error', { message: 'Room not found' });
+      return;
+    }
     socket.join(roomCode);
+    rooms.get(roomCode).players.add(socket.id);
     console.log(`Client ${socket.id} joined room: ${roomCode}`);
     socket.emit('joined_room', { roomCode });
   });
@@ -52,6 +84,16 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log(`Client disconnected: ${socket.id}`);
+    // Remove from rooms
+    for (const [code, room] of rooms) {
+      if (room.players.has(socket.id)) {
+        room.players.delete(socket.id);
+        if (room.players.size === 0) {
+          rooms.delete(code); // Clean up empty rooms
+        }
+        break;
+      }
+    }
   });
 });
 

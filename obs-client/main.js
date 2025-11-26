@@ -10,7 +10,7 @@ if (roomFromUrl) {
   console.log('Room code set from URL:', ROOM_CODE);
 }
 
-const socket = io('http://localhost:3000');
+const socket = io(window.location.origin);
 
 // Connect to room
 socket.on('connect', () => {

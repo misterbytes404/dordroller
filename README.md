@@ -31,7 +31,12 @@ This project incorporates parsing logic inspired by the 5etools project (https:/
 
 ## To Do
 
-1. **HP Bar:** Make an HP bar at the top of the monster card that allows the GM to manipulate the value to show damage.Implament this for the player client as well.
+1. **HP Bar:** Make an HP bar at the top of the monster card that allows the GM to manipulate the value to show damage. -DONE-
+  - Allow for Monster Name and HP bar to display on the OBS browser source.
+2. **Database**: Databvase needs to be setup and configured to allow for persitence.
+3. **Twitch Oauth Implementation:** Allow for GMs and Players to authenticate with Twitch credentials.
+4. **Player Panel:** Construct player panel, integrate with GM panel and OBS overlay.
+5. **UI Design:* Begin UI visual overhaul and design.
 
 ## Known Bugs
 

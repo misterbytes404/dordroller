@@ -123,6 +123,7 @@ export class MonsterTracker {
     document.getElementById('monster-type').value = `${monster.size ? monster.size[0] : 'M'} ${monster.type.type} (${monster.type.tags ? monster.type.tags.join(', ') : ''})`;
     document.getElementById('monster-ac').value = monster.ac ? monster.ac[0] : 10 + Math.floor(((monster.dex || 10) - 10) / 2);
     document.getElementById('monster-hp').value = monster.hp ? monster.hp.average : 1;
+    document.getElementById('monster-hp-max').value = monster.hp ? monster.hp.average : 1;
     document.getElementById('monster-hit-dice').value = monster.hp ? monster.hp.formula : '';
     document.getElementById('monster-speed').value = this.formatSpeed(monster.speed);
     document.getElementById('monster-str').value = monster.str || 10;
@@ -171,6 +172,7 @@ export class MonsterTracker {
     const type = document.getElementById('monster-type').value.trim();
     const ac = Number(document.getElementById('monster-ac').value);
     const hp = Number(document.getElementById('monster-hp').value);
+    const hpMax = Number(document.getElementById('monster-hp-max').value) || hp;
     const hitDice = document.getElementById('monster-hit-dice').value.trim();
     const speed = document.getElementById('monster-speed').value.trim();
     const str = Number(document.getElementById('monster-str').value) || 10;
@@ -193,6 +195,7 @@ export class MonsterTracker {
       type,
       ac,
       hp,
+      hpMax,
       hitDice,
       speed,
       abilities: { str, dex, con, int, wis, cha },
@@ -212,6 +215,7 @@ export class MonsterTracker {
     const list = document.getElementById('monster-list');
     list.innerHTML = '';
     this.monsters.forEach(monster => {
+      if (!monster.hpMax) monster.hpMax = monster.hp;
       const card = document.createElement('div');
       card.className = 'monster-card';
       if (this.editingId === monster.id) {
@@ -227,6 +231,8 @@ export class MonsterTracker {
           <input type="number" id="edit-ac-${monster.id}" value="${monster.ac}"><br>
           <label for="edit-hp-${monster.id}">HP:</label><br>
           <input type="number" id="edit-hp-${monster.id}" value="${monster.hp}"><br>
+          <label for="edit-hp-max-${monster.id}">HP Max:</label><br>
+          <input type="number" id="edit-hp-max-${monster.id}" value="${monster.hpMax}"><br>
           <label for="edit-hit-dice-${monster.id}">Hit Dice:</label><br>
           <input type="text" id="edit-hit-dice-${monster.id}" value="${monster.hitDice || ''}"><br>
           <label for="edit-speed-${monster.id}">Speed:</label><br>
@@ -281,7 +287,9 @@ export class MonsterTracker {
           <hr>
           <p><strong>AC:</strong> ${monster.ac || (10 + Math.floor(((monster.abilities.dex || 10) - 10) / 2))}</p>
           <p><strong>Initiative:</strong> ${modDex}</p>
-          <p><strong>HP:</strong> ${monster.hp}</p>
+          <p><strong>HP:</strong> <span id="hp-text-${monster.id}">${monster.hp}</span> / ${monster.hpMax}</p>
+          <progress id="hp-bar-${monster.id}" value="${monster.hp}" max="${monster.hpMax}"></progress><br>
+          <input type="range" id="hp-slider-${monster.id}" min="0" max="${monster.hpMax}" step="1" value="${monster.hp}"><br>
           <p><strong>Hit Dice:</strong> ${monster.hitDice || 'N/A'}</p>
           <p><strong>Speed:</strong> ${monster.speed}</p>
           <hr>
@@ -307,6 +315,17 @@ export class MonsterTracker {
         `;
       }
       list.appendChild(card);
+
+      if (this.editingId !== monster.id) {
+        const slider = card.querySelector(`#hp-slider-${monster.id}`);
+        const bar = card.querySelector(`#hp-bar-${monster.id}`);
+        const hpText = card.querySelector(`#hp-text-${monster.id}`);
+        slider.addEventListener('input', () => {
+          monster.hp = Math.max(0, Math.min(monster.hpMax, Number(slider.value)));
+          bar.value = monster.hp;
+          hpText.textContent = monster.hp;
+        });
+      }
     });
 
     // Add event listeners (same as before)
@@ -348,6 +367,7 @@ export class MonsterTracker {
     const newType = document.getElementById(`edit-type-${id}`).value.trim();
     const newAc = Number(document.getElementById(`edit-ac-${id}`).value);
     const newHp = Number(document.getElementById(`edit-hp-${id}`).value);
+    const newHpMax = Number(document.getElementById(`edit-hp-max-${id}`).value) || newHp;
     const newHitDice = document.getElementById(`edit-hit-dice-${id}`).value.trim();
     const newSpeed = document.getElementById(`edit-speed-${id}`).value.trim();
     const newStr = Number(document.getElementById(`edit-str-${id}`).value) || 10;
@@ -368,6 +388,7 @@ export class MonsterTracker {
     monster.type = newType;
     monster.ac = newAc;
     monster.hp = newHp;
+    monster.hpMax = newHpMax;
     monster.hitDice = newHitDice;
     monster.speed = newSpeed;
     monster.abilities = { str: newStr, dex: newDex, con: newCon, int: newInt, wis: newWis, cha: newCha };
@@ -399,6 +420,7 @@ export class MonsterTracker {
     document.getElementById('monster-type').value = '';
     document.getElementById('monster-ac').value = '';
     document.getElementById('monster-hp').value = '';
+    document.getElementById('monster-hp-max').value = '';
     document.getElementById('monster-hit-dice').value = '';
     document.getElementById('monster-speed').value = '';
     document.getElementById('monster-str').value = '10';

@@ -16,8 +16,16 @@
     <main>
       <section id="room-section">
         <h2>Room Management</h2>
-        <input type="text" id="room-code" placeholder="Enter Room Code">
-        <button id="join-room-btn">Join/Create Room</button>
+        <div id="room-setup">
+          <button id="create-room-btn">Create New Room</button>
+          <br><br>
+          <input type="text" id="room-code" placeholder="Enter Room Code to Join">
+          <button id="join-room-btn">Join Room</button>
+        </div>
+        <div id="room-info" style="display: none;">
+          <p><strong>Room Code:</strong> <span id="current-room-code"></span></p>
+          <p><strong>OBS Overlay URL:</strong> <a id="obs-link" href="" target="_blank">Open Overlay</a></p>
+        </div>
       </section>
 
       <section id="dice-roller">
@@ -118,6 +126,10 @@
           <div class="field-group">
             <label for="monster-hp">HP:</label><br>
             <input type="number" id="monster-hp" placeholder="HP">
+          </div>
+          <div class="field-group">
+            <label for="monster-hp-max">HP Max:</label><br>
+            <input type="number" id="monster-hp-max" placeholder="HP Max">
           </div>
           <div class="field-group">
             <label for="monster-hit-dice">Hit Dice:</label><br>
