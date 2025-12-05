@@ -1,56 +1,131 @@
-# Dord Roller: Twitch D&D Stream Manager
+<div align="center">
 
-A modular, real-time web application suite for managing D&D games on Twitch streams.
+# 🎲 Dord Roller
 
-## Project Structure
+### *A Twitch D&D Stream Management Suite*
 
-```
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
+[![Socket.io](https://img.shields.io/badge/socket.io-4.x-black)](https://socket.io/)
+
+*Roll dice, track monsters, manage characters — all in real-time for your stream.*
+
+</div>
+
+---
+
+## 📖 About
+
+**Dord Roller** is a modular, real-time web application suite designed for Twitch streamers who run D&D campaigns. It connects Game Masters, Players, and your stream overlay seamlessly through WebSocket technology.
+
+## 🗂️ Project Structure
+
+```text
 DordRoller/
-├── backend/          # Node.js server with Express & Socket.io
-├── gm-client/        # GM control panel web app
-├── player-client/    # Player remote interface web app
-├── obs-client/       # OBS browser source display
-└── shared/           # Shared utilities and types
+├── 🖥️  backend/        → Node.js server (Express + Socket.io)
+├── 🎮  gm-client/      → GM control panel
+├── 👤  player-client/  → Player character sheets & rolling
+├── 📺  obs-client/     → OBS browser source overlay
+└── 🔗  shared/         → Shared utilities & event definitions
 ```
 
-## Technology Stack
+---
 
-- **Backend**: Node.js, Express.js, Socket.io, SQLite
-- **Frontend**: Modern JavaScript (ES6+)
-- **Real-time**: WebSocket via Socket.io
+## ✨ Features
 
-## Attributions
+### 🎮 GM Client
 
-This project incorporates parsing logic inspired by the 5etools project (https://github.com/5etools-mirror-3/5etools-src), which is licensed under the MIT License. The original project provides comprehensive D&D tools and data.
+| Feature | Description |
+|---------|-------------|
+| **Dice Roller** | Roll d4, d6, d8, d10, d12, d20, d100 with custom labels |
+| **Monster Tracker** | Search D&D 5e bestiary, track HP with visual health bars |
+| **Room Management** | Generate unique room codes for player sessions |
+| **Live Broadcasting** | Instant sync to OBS overlay and connected players |
 
-## Development Roadmap
+### 👤 Player Client
 
-1. **MVP 1**: GM-to-OBS Dice Roller
-2. **MVP 2**: GM Stat Tracker
-3. **MVP 3**: Player Client Integration
+Full **D&D 5e character sheet** with automatic calculations:
 
-## To Do
+- 📝 Basic Info — Name, class, level, race, alignment, XP
+- 💪 Ability Scores — Auto-calculated modifiers & totals
+- 🛡️ Saving Throws — Proficiency tracking per ability
+- 🎯 Skills — All 18 skills with proficiency & expertise
+- ⚔️ Combat — AC, HP, initiative, speed, weapons, armor
+- ✨ Spellcasting — Cantrips, prepared spells (1st-9th), slot tracking
+- 🎒 Inventory — Equipment, features, and feats tabs
 
-1. **HP Bar:** Make an HP bar at the top of the monster card that allows the GM to manipulate the value to show damage. -DONE-
-  - Allow for Monster Name and HP bar to display on the OBS browser source.
-2. **Database**: Databvase needs to be setup and configured to allow for persitence.
-3. **Twitch Oauth Implementation:** Allow for GMs and Players to authenticate with Twitch credentials.
-4. **Player Panel:** Construct player panel, integrate with GM panel and OBS overlay.
-5. **UI Design:* Begin UI visual overhaul and design.
+*Plus:* Receive roll requests from GM and execute them in real-time!
 
-## Known Bugs
+### 📺 OBS Client
 
-1. **Monster Type:** Some entries pulled from the json database do not properly parse monster types.
+- **Stream-Ready Overlay** — Drop into OBS as a browser source
+- **Real-Time Updates** — Dice rolls and game state broadcast instantly
 
-## Contributors
+---
 
-<!--
-Source - https://stackoverflow.com/a
-Posted by Bertrand Martel
-Retrieved 2025-11-15, License - CC BY-SA 4.0
--->
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+|-------|--------------|
+| **Backend** | Node.js, Express.js, Socket.io |
+| **Frontend** | Vite, ES6+ JavaScript, CSS3 |
+| **Real-time** | WebSocket (Socket.io) |
+| **Data** | D&D 5e Bestiary JSON ([5etools](https://github.com/5etools-mirror-3/5etools-src) format) |
+
+---
+
+## 🗺️ Roadmap
+
+| Phase | Status | Description |
+|-------|--------|-------------|
+| **MVP 1** | ✅ Complete | GM-to-OBS Dice Roller |
+| **MVP 2** | ✅ Complete | GM Stat Tracker |
+| **MVP 3** | 🔄 In Progress | Player Client Integration |
+
+### 📋 To Do
+
+- [ ] 📺 OBS Monster Display — Show monster name & HP bar on stream
+- [ ] 💾 Database Persistence — SQLite for character sheets & game state
+- [ ] 🔐 Twitch OAuth — Authentication for GMs and players
+- [ ] 🎲 Player Dice Rolling — Full integration with GM panel & OBS
+- [ ] 🎨 UI Overhaul — Visual polish across all clients
+
+### ✅ Completed
+
+- [x] HP bars on monster cards with damage controls
+- [x] GM dice roller with room broadcasting
+- [x] Player character sheet (D&D 5e PDF-style)
+- [x] Ability score calculations (modifiers, totals)
+- [x] Saving throw & skill calculations with proficiency
+- [x] Spellcasting section with cantrips & prepared spells
+- [x] Room-based session management
+
+---
+
+## 🐛 Known Issues
+
+| Issue | Description |
+|-------|-------------|
+| Monster Type Parsing | Some bestiary entries don't parse monster types correctly |
+
+---
+
+## 🙏 Attributions
+
+This project incorporates parsing logic inspired by the [5etools project](https://github.com/5etools-mirror-3/5etools-src), licensed under MIT. Thanks to the 5etools community for their comprehensive D&D data!
+
+---
+
+## 👥 Contributors
 
 <a href="https://github.com/misterbytes404/dordroller/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=misterbytes404/dordroller" />
+  <img src="https://contrib.rocks/image?repo=misterbytes404/dordroller" alt="Contributors" />
 </a>
+
+---
+
+<div align="center">
+
+
+</div>
 
